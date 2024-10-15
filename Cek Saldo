@@ -1,0 +1,50 @@
+def my_function():
+    print("Selamat datang di Sigma Store")
+    print("Silahkan ketik 'SIGMA' untuk masuk ke tampilan cek saldo")
+
+def cek_masuk():
+    masuk = input("Ketik 'SIGMA' untuk melanjutkan: ")
+    if masuk.upper() == "SIGMA":
+        tampilkan_menu()
+    else:
+        print("Input salah. Dibilang ketik 'SIGMA' malah ketik yang lain.")
+        cek_masuk()
+
+def tampilkan_menu():
+    print("1. Gopay")
+    print("2. Dana")
+    print("3. Shopeepay")
+    print("4. Ovo")
+    print("5. Garena Shells")
+    print("6. Steam Point")
+    print("7. Gopay Coin")
+    print("8. Token listrik")
+    print("0. Kembali")
+
+    saldo = input("Masukkan pilihan nomor untuk melihat saldo: ")
+
+    if saldo == "1":
+        print("Saldo Gopay anda tersisa Rp100.000")
+    elif saldo == "2":
+        print("Saldo Dana anda tersisa Rp10.000")
+    elif saldo == "3":
+        print("Saldo Shopeepay anda kosong")
+    elif saldo == "4":
+        print("Saldo Ovo anda tersisa Rp50.000")
+    elif saldo == "5":
+        print("Saldo Garena Shells anda tersisa 200 Point")
+    elif saldo == "6":
+        print("Saldo Steam Point anda tersisa Rp45.000")
+    elif saldo == "7":
+        print("Saldo Gopay Coin anda tersisa 2.354")
+    elif saldo == "8":
+        print("Token listrik anda tersisa 1000 kwh")
+    elif saldo == "0":
+        print("Terima kasih telah datang ke Sigma Store.")
+    else:
+        print("Gaada, orang udh jelas pilihannya cuman 0-8")
+        tampilkan_menu()
+
+
+my_function()
+cek_masuk()
