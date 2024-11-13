@@ -1,13 +1,15 @@
+import time
+
 class Sewa_akun:
-    def _init_(self,Level,Rank,Skin,Winrate,Harga):
+    def _init_(self, Level, Rank, Skin, Winrate, Harga):
         self.Level = Level
         self.Rank = Rank
         self.Skin = Skin
         self.Winrate = Winrate
-        self.Harga = Harga
+        self.Harga = int(Harga.replace("Rp", "").replace(".", "")) 
 
     def info_Akun(self):
-        print(f"Saya mau sewa akun level {self.Level}, dengan rank {self.Rank}, jumlah skin {self.Skin}, winrate {self.Winrate}, dan harga {self.Harga}.")
+        print(f"Saya mau sewa akun level {self.Level}, dengan rank {self.Rank}, jumlah skin {self.Skin}, winrate {self.Winrate}, dan harga Rp{self.Harga:,}.")
 
 
 Akun1 = Sewa_akun("121", "Mythical Glory", "250", "70%", "Rp25.000")
@@ -15,36 +17,73 @@ Akun2 = Sewa_akun("40", "Mythical Immortal", "45", "100%", "Rp50.000")
 Akun3 = Sewa_akun("135", "Mythical Honor", "165", "70%", "Rp20.000")
 Akun4 = Sewa_akun("130", "Mythical", "300", "80%", "Rp10.000")
 
+def tampilkan_akun():
+    print("1. Level 121, Rank Mythical Glory, Skin 250, Winrate 70%, Rp25.000")
+    print("2. Level 40, Rank Mythical Immortal, Skin 45, Winrate 100%, Rp50.000")
+    print("3. Level 135, Rank Mythical Honor, Skin 165, Winrate 70%, Rp20.000")
+    print("4. Level 130, Rank Mythical, Skin 300, Winrate 80%, Rp 10.000")
 
-def pilih_Akun():
-    print("1. Level 121, Rank Mythical Glory, Skin 250, Winrate 70%")
-    print("2. Level 40, Rank Mythical Immortal, Skin 45, Winrate 100%")
-    print("3. Level 135, Rank Mythical Honor, Skin 165, Winrate 70%")
-    print("4. Level 130, Rank Mythical, Skin 300, Winrate 80%")
+def pilih_Pembayaran(total_harga):
+    print("Metode Pembayaran:")
+    print("1. Gopay")
+    print("2. Dana")
+    print("3. Shopeepay")
+    print("4. Transfer No Rekening")
 
-pilih_Akun()
+    metode = input("Pilih metode pembayaran: ")
+    if metode in ["1", "2", "3"]:
+        print("Pembayaran anda sedang diproses.")
+    elif metode == "4":
+        print("Silahkan transfer ke nomor rekening: 888-765-432.")
+    else:
+        print("Metode pembayaran tidak valid.")
+        return
 
-pilihan = input("Masukkan nomor pilihan Anda: ")
-
-
-if pilihan == "1":
-    Sewa_akunsigma = Akun1
-elif pilihan == "2":
-    Sewa_akunsigma = Akun2
-elif pilihan == "3":
-    Sewa_akunsigma = Akun3
-elif pilihan == "4":
-    Sewa_akunsigma = Akun4
-else:
-    print("Pilihan tidak valid.")
-    exit()
+    time.sleep(3)
+    print(f"Pembayaran Anda dengan total Rp{total_harga:,} telah berhasil, terima kasih telah melakukan pembelian di Sigma Store.")
 
 
-Sewa_akunsigma.info_Akun()
+def my_function():
+    print("Selamat datang di Sigma Store")
+    tampilkan_akun()
+    akun_terpilih = []
+    total_harga = 0
 
-Sewa = input("Apakah kamu yakin mau menyewa akun ini? (ofc/n): ").lower()
+    while True:
+        pilihan = input("Masukkan nomor pilihan akun, jika sudah ketik 'selesai' untuk melakukan pembayaran): ")
+        
+        if pilihan.lower() == "selesai":
+            break
+        
+        if pilihan == "1":
+            akun_terpilih.append(Akun1)
+        elif pilihan == "2":
+            akun_terpilih.append(Akun2)
+        elif pilihan == "3":
+            akun_terpilih.append(Akun3)
+        elif pilihan == "4":
+            akun_terpilih.append(Akun4)
+        else:
+            print("Pilihan tidak valid. Silakan pilih lagi.")
+            continue
+        
+        print("Pilihan anda telah ditambahkan ke dalam keranjang, silahkan pilih nomor lain jika ingin menambah pembelian Anda.")
 
-if Sewa == "ofc":
-    print(f"Kamu telah berhasil menyewa akun dengan level {Sewa_akunsigma.Level} Rank {Sewa_akunsigma.Rank}, Jumlah Skin {Sewa_akunsigma.Skin}, Winrate {Sewa_akunsigma.Winrate} seharga {Sewa_akunsigma.Harga}.")
-else:
-    print("Terima kasih telah mengunjungi Sigma Store.")
+    if not akun_terpilih:
+        print("kamu belum memilih akun. Terima kasih telah mengunjungi Sigma Store.")
+        return
+
+    print("\nAkun yang Anda pilih:")
+    for akun in akun_terpilih:
+        akun.info_Akun()
+        total_harga += akun.Harga
+
+    konfirmasi = input("Apakah kamu yakin ingin menyewa akun-akun ini? (y/n): ").lower()
+    if konfirmasi == "y":
+        print(f"Silahkan pilih metode pembayaran untuk total sewa sebesar Rp{total_harga:,}.")
+        pilih_Pembayaran(total_harga)
+    else:
+        print("Terima kasih telah mengunjungi Sigma Store.")
+
+
+my_function()
