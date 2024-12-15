@@ -1,0 +1,23 @@
+import sys
+from time import sleep
+
+def print_lyrics():
+    lines = [
+        ("I'm sure we're taller in another dimension", 0.08),
+        ("You say we're small and not worth the mention", 0.08),
+        ("You're tired of movin', your body's achin'", 0.08),
+        ("We could vacay, there's places to go.....", 0.08),
+    ]
+
+    
+    delays = [1.0, 1.0, 1.0, 1.0]
+
+    for i, (line, char_delay) in enumerate(lines):
+        for char in line:
+            print(char, end='')
+            sys.stdout.flush()
+            sleep(char_delay)
+        sleep(delays[i])  
+        print('')
+
+print_lyrics()
