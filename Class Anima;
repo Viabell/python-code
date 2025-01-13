@@ -1,0 +1,32 @@
+Class Animal:
+    def _init_(self, name, age):
+        self.__name =  name
+        self.__age = age
+
+
+#Getter untuk mendapatkan nilai name
+    def get_name(self):
+        return self.__name
+
+
+#setter untuk mengubah nilai age dengan validasi
+    def set_age(self, age):
+        if age > 0:
+            self.__age = age
+        else:
+            print("Age must be positive!")
+
+
+#Getter untuk mendapatkan nilai age
+    def get_age(self):
+        return self.__age
+
+#Menggunakan class
+Fox = Animal("Akmal", 2)
+print("Name:", Fox.get_name())  #Mengakses data dengan getter
+print('Age:', Fox.get_age())
+
+Fox.set_age(4)       #Mengubah data dengan setter
+print("Updated Age:", Fox.get_age())
+
+Fox.set_age(-2)          #contoh valdasi
