@@ -1,0 +1,58 @@
+print("Selamat datang di Bank Sigma!")
+
+class BankAccount:
+    def __init__(self, user, no_rekening, pin):
+        self.user = user  
+        self.__no_rekening = no_rekening  
+        self.__pin = int(pin)  
+
+    def set_pin(self, pin_lama, pin_baru):
+        if pin_lama != self.__pin:
+            print("PIN lama salah!")  
+            return  
+
+        pin_baru = int(pin_baru)  
+        if 100000 <= pin_baru <= 999999:  
+            self.__pin = pin_baru
+            print(f"\nNama pemilik: {self.user}")
+            print(f"PIN lama Anda {pin_lama} telah diganti ke PIN baru {pin_baru}.")
+        else:
+            print("PIN baru tidak valid! Harus berupa angka 6 digit.")
+
+    def get_no_rekening(self):
+        return self.__no_rekening
+
+
+
+bank_account = [
+    BankAccount("Ajul", "1234567822", 123454),
+    BankAccount("Asep", "1234567891", 123456),
+    BankAccount("Asep Bucket", "5678901234", 654321),
+    BankAccount("Asep Sigma", "5678912340", 654322),
+]
+
+
+input_no_rekening = input("Masukkan nomor rekening Anda: ")
+
+
+selected_account = None
+for akun in bank_account:
+    if akun.get_no_rekening() == input_no_rekening:
+        selected_account = akun
+        break
+
+
+if selected_account:
+    print(f"\nSelamat datang, {selected_account.user}!")
+    
+    pin_lama = int(input("Masukkan PIN lama Anda: "))
+    
+    
+    if pin_lama != selected_account._BankAccount__pin:
+        print("PIN lama salah!")  
+    else:
+        pin_baru = int(input("Masukkan PIN baru Anda: "))
+        selected_account.set_pin(pin_lama, pin_baru)
+
+else:
+    print("Nomor rekening tidak ditemukan!")
